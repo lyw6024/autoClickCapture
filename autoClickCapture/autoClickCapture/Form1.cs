@@ -17,7 +17,8 @@ namespace autoClickCapture
     public partial class Form1 : Form
     {
 
-        BackgroundWorker bgClick;
+        BackgroundWorker bgClick,oncount;
+
         public Form1()
         {
             InitializeComponent();
@@ -26,7 +27,25 @@ namespace autoClickCapture
             bgClick.WorkerReportsProgress = true;
             bgClick.ProgressChanged += new ProgressChangedEventHandler(clickpcbgwf);
             bgClick.RunWorkerCompleted += new RunWorkerCompletedEventHandler(
-                (object s,RunWorkerCompletedEventArgs e) => {button1.Enabled=true; }) ;
+                (object s,RunWorkerCompletedEventArgs e) => { setCapsValue(true);progressBar1.Value = 0; }) ;
+
+            oncount = new BackgroundWorker();
+            oncount.WorkerReportsProgress = true;
+            oncount.DoWork += new DoWorkEventHandler(
+                (s,e)=>
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        Thread.Sleep(1000);
+                        ((BackgroundWorker)s).ReportProgress(i);
+                    }
+                });
+
+            oncount.ProgressChanged += new ProgressChangedEventHandler(
+                (s, e) =>{progressBar1.Value = 1+e.ProgressPercentage;});
+
+            oncount.RunWorkerCompleted += new RunWorkerCompletedEventHandler(
+                (s, e) => { bgClick.RunWorkerAsync((int)numericUpDown1.Value); }) ;
 
         }
 
@@ -54,6 +73,7 @@ namespace autoClickCapture
 
         private void clickbgwf(object sender,DoWorkEventArgs e)
         {
+            Thread.Sleep(1000);
             int endNumber = 0;
             if (e.Argument != null)
             {
@@ -103,11 +123,18 @@ namespace autoClickCapture
             lastsrc = src;
             lastdst = dst;
         }
-
+        private void setCapsValue(bool s)
+        {
+            button1.Enabled = s;
+            numericUpDown1.Enabled = s;
+            numericUpDown2.Enabled = s;
+            numericUpDown3.Enabled = s;
+        }
         private void button1_Click(object sender, EventArgs e)
         {
-            button1.Enabled = false;
-            bgClick.RunWorkerAsync((int)numericUpDown1.Value);
+            setCapsValue(false);
+            progressBar1.Value = 1;
+            oncount.RunWorkerAsync();
         }
 
         private Bitmap GetScreenCapture()
