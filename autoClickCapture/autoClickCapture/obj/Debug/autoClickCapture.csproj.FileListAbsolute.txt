@@ -29,9 +29,7 @@ D:\code\lx2\autoClickCapture\autoClickCapture\autoClickCapture\obj\Debug\autoCli
 D:\code\lx2\autoClickCapture\autoClickCapture\autoClickCapture\obj\Debug\autoClickCapture.csproj.CopyComplete
 D:\code\lx2\autoClickCapture\autoClickCapture\autoClickCapture\obj\Debug\autoClickCapture.exe
 D:\code\lx2\autoClickCapture\autoClickCapture\autoClickCapture\obj\Debug\autoClickCapture.pdb
-D:\code\lx2\autoClickCapture\autoClickCapture\autoClickCapture\bin\Debug\Microsoft.Data.Sqlite.dll
 D:\code\lx2\autoClickCapture\autoClickCapture\autoClickCapture\bin\Debug\SQLitePCLRaw.core.dll
-D:\code\lx2\autoClickCapture\autoClickCapture\autoClickCapture\bin\Debug\Microsoft.Data.Sqlite.xml
 D:\code\lx2\autoClickCapture\autoClickCapture\autoClickCapture\bin\Debug\EntityFramework.dll
 D:\code\lx2\autoClickCapture\autoClickCapture\autoClickCapture\bin\Debug\EntityFramework.SqlServer.dll
 D:\code\lx2\autoClickCapture\autoClickCapture\autoClickCapture\bin\Debug\System.Data.SQLite.dll
